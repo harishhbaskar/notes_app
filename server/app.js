@@ -9,6 +9,12 @@ import cors from 'cors';
 
 const app = express();
 
+app.use((req, res, next) => {
+    console.log(`Request Origin: ${req.headers.origin}`);
+    console.log(`Request Method: ${req.method}`);
+    console.log(`Request URL: ${req.url}`);
+    next();
+});
 // --- THE FIX: Allow ALL origins temporarily ---
 const corsOptions = {
     origin: [
