@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 const corsOptions = {
     origin: [
         "http://localhost:5173",                     // Local Frontend
-        "https://notes-app-nine-mocha.vercel.app"    // Live Vercel Frontend
+        "https://notes-app-nine-mocha.vercel.app/api/v1"    // Live Vercel Frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
