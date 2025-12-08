@@ -17,10 +17,7 @@ app.use((req, res, next) => {
 });
 // --- THE FIX: Allow ALL origins temporarily ---
 const corsOptions = {
-    origin: [
-        "http://localhost:5173",                     // Local Frontend
-        "https://notes-app-nine-mocha.vercel.app/api/v1"    // Live Vercel Frontend
-    ],
+    origin: 'https://notes-app-nine-mocha.vercel.app/',
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
 };
