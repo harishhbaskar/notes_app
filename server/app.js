@@ -11,7 +11,10 @@ const app = express();
 
 // --- THE FIX: Allow ALL origins temporarily ---
 const corsOptions = {
-    origin: '*',  // This allows Vercel, Localhost, Postman, anything.
+    origin: [
+        "http://localhost:5173",                     // Local Frontend
+        "https://notes-app-nine-mocha.vercel.app"    // Live Vercel Frontend
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
 };
