@@ -28,7 +28,7 @@ const handleApi = async (payload : SignInPayload) : Promise<SignInResponse> => {
         throw new Error("both email and password is required")
     }
     
-    const API_BASE_URL = 'http://localhost:5500/api/v1';
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api/v1';
     const URL = `${API_BASE_URL}/auth/signin`;
 
     try{

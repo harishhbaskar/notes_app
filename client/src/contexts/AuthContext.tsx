@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{children : ReactNode}> = ({children}) => {
 
     const verifyToken = async (storedToken : string) => {
         try{
-            const API_BASE_URL = 'http://localhost:5500/api/v1';
+            const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api/v1';
             const URL = `${API_BASE_URL}/auth/me`
 
             const response = await axios.get<{success : boolean ; data :{user:User}}>(

@@ -33,7 +33,7 @@ const handleApi = async (payload : SignUpPayload) : Promise<SignUpResponse> => {
         }
     }
 
-    const API_BASE_URL = 'http://localhost:5500/api/v1'
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api/v1';
     const URL = `${API_BASE_URL}/auth/signup`
 
     try{

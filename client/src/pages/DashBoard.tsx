@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useAuth } from '../contexts/authData';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api/v1';
+
 interface Note {
     _id: string;
     title: string;
@@ -41,7 +43,7 @@ const DashBoard = () => {
 
     const fetchNotes = async () => {
         try {
-            const response = await axios.get('http://localhost:5500/api/v1/notes', {
+            const response = await axios.get(`${API_BASE_URL}/notes`,{
                 headers: { Authorization: `Bearer ${token}` }
             });
             setNotes(response.data);
@@ -83,7 +85,7 @@ const DashBoard = () => {
 
             if (editingId) {
                 // UPDATE
-                const response = await axios.put(`http://localhost:5500/api/v1/notes/update/${editingId}`, 
+                const response = await axios.put(`${API_BASE_URL}/notes/update/${editingId}`, 
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -93,7 +95,7 @@ const DashBoard = () => {
                 ));
             } else {
                 // CREATE
-                const response = await axios.post('http://localhost:5500/api/v1/notes', 
+                const response = await axios.post(`${API_BASE_URL}/notes`, 
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -111,7 +113,7 @@ const DashBoard = () => {
     const handleDelete = async (id: string) => {
         if(!window.confirm("Are you sure?")) return;
         try {
-            await axios.delete(`http://localhost:5500/api/v1/notes/delete/${id}`, {
+            await axios.delete(`${API_BASE_URL}/notes/delete/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setNotes(notes.filter(note => note._id !== id));
