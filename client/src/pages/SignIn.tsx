@@ -126,9 +126,19 @@ const SignIn = () => {
         />
         <button
             type="submit"
-            className="bg-[#2563EB] hover:bg-[#3B82F6] rounded-sm px-6 py-2 text-[#FFFFFF] "
-            disabled = {isLoading?? false}
-        >sign in</button>
+            className="bg-[#2563EB] hover:bg-[#3B82F6] rounded-sm px-6 py-2 text-[#FFFFFF] flex justify-center items-center gap-2 min-w-[120px]"
+            disabled={isLoading ?? false}
+        >
+            {isLoading ? (
+                <>
+                    {/* Tailwind Spinner */}
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Loading...</span>
+                </>
+            ) : (
+                "Sign In"
+            )}
+        </button>
 
         {error && <p className = "text-red-500">{error}</p>}
         {success && <p className = "text-green-500">{success}</p>}

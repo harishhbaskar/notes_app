@@ -138,8 +138,17 @@ const SignUp = () => {
         <button
             type="submit"
             disabled={isLoading ?? false}
-            className="bg-[#2563EB] hover:bg-[#3B82F6] rounded-sm px-6 py-2 text-[#FFFFFF] "            
-        >sign up</button>
+            className="bg-[#2563EB] hover:bg-[#3B82F6] rounded-sm px-6 py-2 text-[#FFFFFF] flex justify-center items-center gap-2 min-w-[120px]"            
+        >
+            {isLoading ? (
+                <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Signing Up...</span>
+                </>
+            ) : (
+                "Sign Up"
+            )}
+        </button>
 
         {error && <p className = "text-red-500">{error}</p>}
         {success && <p className = "text-green-500">{success}</p>}
