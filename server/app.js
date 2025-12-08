@@ -10,12 +10,32 @@ import cors from 'cors';
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:5173",process.env.CLIENT_URL], // frontend URL
+    origin: function (origin, callback) {
+        // 1. Allow requests with no origin (like Postman or server-to-server)
+        if (!origin) return callback(null, true);
+
+        // 2. Define your allowed production origin
+        // We trim() to ensure no accidental spaces from the environment variable break it
+        const allowedOrigin = process.env.CLIENT_URL ? process.env.CLIENT_URL.trim() : "";
+
+        // 3. LOGGING (This is the key part!)
+        console.log(`[CORS] Incoming Origin: '${origin}'`);
+        console.log(`[CORS] Allowed Client:  '${allowedOrigin}'`);
+
+        // 4. Logic to approve or block
+        if (origin === allowedOrigin || origin.startsWith("http://localhost")) {
+            return callback(null, true);
+        } else {
+            console.log("[CORS] Request BLOCKED.");
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // if you want to send cookies
+    allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 app.use(express.json());
 
 connectToDatabase();
@@ -24,7 +44,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(cookieParser())
 
 app.get('/',(req , res) => {
-    res.send("hello")
+    res.send("Server is running!")
 }) 
 
 app.use('/api/v1/auth',authRouter)
@@ -32,7 +52,7 @@ app.use('/api/v1/notes',notesRouter)
 app.use(errorMiddleware);
 
 app.listen(PORT,()=> {
-    console.log(`hello  server running http://localhost:${PORT} `)
+    console.log(`Server running on port ${PORT}`)
 })
 
 export default app;
