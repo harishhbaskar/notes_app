@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
 const corsOptions = {
     // Allow the specific origin defined in env, or default to localhost for dev
-    origin: "https://notes-app-olive-eight.vercel.app", 
+    origin: ["https://notes-app-olive-eight.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
 };
