@@ -55,7 +55,7 @@ const DashBoard = () => {
         }
     };
 
-    // --- TAG FUNCTIONS ---
+    // TAG FUNCTIONS 
     const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -71,7 +71,7 @@ const DashBoard = () => {
         setTags(tags.filter(tag => tag !== tagToRemove));
     };
 
-    // --- FORM SUBMIT ---
+    // FORM SUBMIT
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -109,7 +109,7 @@ const DashBoard = () => {
         }
     };
 
-    // --- DELETE ---
+    // DELETE
     const handleDelete = async (id: string) => {
         if(!window.confirm("Are you sure?")) return;
         try {
@@ -145,7 +145,7 @@ const DashBoard = () => {
         setShowForm(false); // Auto-close form
     };
 
-    // --- FILTER LOGIC ---
+    //FILTER LOGIC 
     const filteredNotes = notes.filter(note => {
         const query = searchQuery.toLowerCase();
         const matchesTitle = note.title.toLowerCase().includes(query);
@@ -154,7 +154,7 @@ const DashBoard = () => {
     });
 
     return (
-        <div className="min-h-screen bg-[#111827] text-white p-8">
+        <div className="min-h-screen bg-[#111827] text-white p-4 md:p-8">
             <div className="max-w-4xl mx-auto">
                 {/* Header & Logout */}
                 <div className="flex justify-between items-center mb-8">
