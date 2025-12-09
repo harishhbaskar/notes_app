@@ -15,9 +15,9 @@ app.use((req, res, next) => {
     console.log(`Request URL: ${req.url}`);
     next();
 });
-// --- THE FIX: Allow ALL origins temporarily ---
+
 const corsOptions = {
-    origin: 'https://notes-app-nine-mocha.vercel.app/',
+//    origin: '', have to get front end url
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
 };
