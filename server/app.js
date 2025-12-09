@@ -16,8 +16,10 @@ app.use((req, res, next) => {
     next();
 });
 
+
 const corsOptions = {
-//    origin: '', have to get front end url
+    // Allow the specific origin defined in env, or default to localhost for dev
+    origin: process.env.CLIENT_URL || "http://localhost:5173", 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, 
 };
